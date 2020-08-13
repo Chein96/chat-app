@@ -5,20 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <link rel="icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/styles.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="centered-form">
         <div class="centered-form__box">
-            <h1>Join</h1>
-            <form action="/chat.html">
-                <label for="">Display name</label>
-                <input type="text" name="username" placeholder="Display name" required />
-                <label for="">Room</label>
-                <input type="text" name="room" placeholder="Room" required />
-                <button>Join</button>
-            </form>
+            <h1>Welcome!</h1>
+            <button id="create-button" class="centered-form__options">Create a Room</button>
+            <button id="join-button" class="centered-form__options" disabled="disabled">Join an existing Room</button>
+
+            <div id="login"></div>
         </div>
     </div>
+    
+    <script id="create-template" type="text/html">
+        <form action="/chat.html">
+            <label for="">Display name</label>
+            <input type="text" name="username" placeholder="Display name" required />
+            <label for="">Room</label>
+            <input type="text" name="room" placeholder="Room" required/>
+            
+            <button>Create</button>
+        </form>
+    </script>
+
+    <script id="join-template" type="text/html">
+        <form action="/chat.html">
+            <label for="">Display name</label>
+            <input type="text" name="username" placeholder="Display name" required />
+            <label for="">Rooms</label>
+            <select name="room" required>
+                {{#rooms}}
+                    <option value="{{.}}">{{.}}</option>
+                {{/rooms}}
+            </select>
+            
+            <button>Join</button>
+        </form>
+        
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/index.js"></script>
 </body>
 </html>

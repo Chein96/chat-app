@@ -41,9 +41,21 @@ const getUser = (id) => users.find((user) => user.id === id);
 
 const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
+const getRooms = () => {
+    const rooms = [];
+    users.forEach((user) => {
+        if(!rooms.includes(user.room)){
+            rooms.push(user.room)
+        }
+    });
+    
+    return rooms;
+}
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getRooms
 }
